@@ -1,0 +1,6 @@
+name: AbilityClasses
+version: '${project.version}'
+main: me.gameisntover.abilityclasses.AbilityClasses
+api-version: 1.16
+authors: [ MmdGIO ]
+description: a plugin that adds classes with their special things
