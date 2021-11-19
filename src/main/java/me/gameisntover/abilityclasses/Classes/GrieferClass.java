@@ -9,8 +9,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 public class GrieferClass implements Listener {
+
     @EventHandler
     public void onPlayerAction(PlayerInteractEvent e) {
         Player player = e.getPlayer();
