@@ -1,5 +1,7 @@
 package me.gameisntover.abilityclasses.GameRules;
 
+import fr.xephi.authme.AuthMe;
+import fr.xephi.authme.api.v3.AuthMeApi;
 import me.gameisntover.abilityclasses.configurationfiles.PlayerConfiguration;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -76,7 +78,12 @@ public class GUIOnJoin implements Listener {
             classGUI.addItem(enderman);
             classGUI.addItem(heaterMan);
             classGUI.addItem(griefer);
-            player.openInventory(classGUI);
+
+            if (AuthMeApi.getInstance().isAuthenticated(player)){
+                player.openInventory(classGUI);
+        } else if (AuthMeApi.getInstance().getPlugin().equals(null)){
+                player.openInventory(classGUI);
+            }
         } else if (PlayerConfiguration.get().getString("Class") != null){
             player.sendMessage("§bYour Class : "+ PlayerConfiguration.get().getString("Class"));
         }
