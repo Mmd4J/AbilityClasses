@@ -15,3 +15,4 @@ if you want to use the plugin api you should just do this :
 	</dependency>
   `
 Tadaaaaa! And now you can use the plugin api :D
+ 
