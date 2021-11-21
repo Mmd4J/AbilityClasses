@@ -13,3 +13,5 @@ if you want to use the plugin api you should just do this :
 	    <artifactId>AbilityClasses</artifactId>
 	    <version>-SNAPSHOT</version>
 	</dependency>
+`
+Tadaaaaa! And now you can use the plugin api :D
