@@ -68,9 +68,6 @@ public final class AbilityClasses extends JavaPlugin {
         icon.setItemMeta(iconMeta);
         iconMeta.setDisplayName(classname);
         GUIOnJoin.classGUI.addItem(icon);
-        c.accept(classname);
-        is.accept(icon);
-        im.accept(iconMeta);
     }
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
