@@ -19,8 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GUIOnJoin implements Listener {
+    public static Inventory classGUI = Bukkit.createInventory(null, 9, "§6Classes");
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
+    public static void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         PlayerConfiguration.create(player);
         PlayerConfiguration.get().addDefault("Class", null);
@@ -28,7 +29,6 @@ public class GUIOnJoin implements Listener {
         PlayerConfiguration.load(player);
         if (PlayerConfiguration.get().getString("Class") == null) {
             player.sendMessage("§cYou have no class, please choose one!");
-            Inventory classGUI = Bukkit.createInventory(null, 9, "§6Classes");
             ItemStack enderman = new ItemStack(Material.ENDER_PEARL, 1);
             ItemMeta endermanMeta = enderman.getItemMeta();
             ItemStack heaterMan = new ItemStack(Material.BLAZE_POWDER, 1);

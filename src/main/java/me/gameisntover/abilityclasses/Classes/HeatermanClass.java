@@ -27,10 +27,10 @@ public class HeatermanClass implements Listener {
                     if (PlayerConfiguration.get().getString("Ability1").equalsIgnoreCase("true")) {
                         PlayerConfiguration.load(player);
                         PlayerConfiguration.get().set("Ability1", "false");
-                        AbilityClasses.getInstance().uwu(player);
+                        AbilityClasses.getInstance().setCooldown(player);
                         PlayerConfiguration.save();
                         player.getWorld().spawnParticle(Particle.FLAME, player.getLocation(), 12);
-                        LargeFireball fireball = (LargeFireball) player.launchProjectile(ArmorStand.class);
+                        LargeFireball fireball = (LargeFireball) player.launchProjectile(LargeFireball.class);
                         fireball.setIsIncendiary(true);
                         fireball.setYield(0);
                         fireball.setShooter(player);

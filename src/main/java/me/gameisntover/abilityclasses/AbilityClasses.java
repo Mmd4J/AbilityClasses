@@ -1,26 +1,19 @@
 package me.gameisntover.abilityclasses;
 import fr.xephi.authme.api.v3.AuthMeApi;
-import jdk.nashorn.internal.objects.annotations.Function;
 import me.gameisntover.abilityclasses.Classes.EndermanClass;
 import me.gameisntover.abilityclasses.Classes.HeatermanClass;
-import me.gameisntover.abilityclasses.GameRules.AbilityCooldown;
 import me.gameisntover.abilityclasses.GameRules.GUIOnJoin;
 import me.gameisntover.abilityclasses.configurationfiles.PlayerConfiguration;
-import me.gameisntover.kbffa.knockbackffa.KnockbackFFA;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Warning;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import javax.annotation.Resource;
-import javax.xml.ws.Action;
-import java.lang.annotation.Target;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public final class AbilityClasses extends JavaPlugin {
     public static AbilityClasses INSTANCE;
@@ -28,6 +21,7 @@ public final class AbilityClasses extends JavaPlugin {
     private final Map<Player, Long> cooldown = new HashMap<>();
     @Override
     public void onEnable() {
+
         if (AuthMeApi.getInstance().getPlugin().getServer().getPluginManager().getPlugin("AuthMe") != null) {
             System.out.println(ChatColor.GREEN + "AuthMe plugin detected!");
         }
@@ -37,7 +31,7 @@ public final class AbilityClasses extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new HeatermanClass(),this);
         saveDefaultConfig();
     }
-    public void uwu(Player player) {
+    public void setCooldown(Player player) {
         // apply cooldown to player
         cooldown.put(player, System.currentTimeMillis() + (10));
 
@@ -70,5 +64,10 @@ public final class AbilityClasses extends JavaPlugin {
         }
     public static AbilityClasses getInstance(){
         return INSTANCE;
+    }
+    public static void createAbilityClass(String classname, ItemStack icon, ItemMeta iconMeta){
+        icon.setItemMeta(iconMeta);
+        iconMeta.setDisplayName(classname);
+        GUIOnJoin.classGUI.addItem(icon);
     }
 }
