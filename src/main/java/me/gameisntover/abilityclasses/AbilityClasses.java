@@ -1,5 +1,4 @@
 package me.gameisntover.abilityclasses;
-import fr.xephi.authme.api.v3.AuthMeApi;
 import me.gameisntover.abilityclasses.Classes.EndermanClass;
 import me.gameisntover.abilityclasses.Classes.HeatermanClass;
 import me.gameisntover.abilityclasses.GameRules.GUIOnJoin;
@@ -8,9 +7,13 @@ import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -21,10 +24,6 @@ public final class AbilityClasses extends JavaPlugin {
     private final Map<Player, Long> cooldown = new HashMap<>();
     @Override
     public void onEnable() {
-
-        if (AuthMeApi.getInstance().getPlugin().getServer().getPluginManager().getPlugin("AuthMe") != null) {
-            System.out.println(ChatColor.GREEN + "AuthMe plugin detected!");
-        }
         INSTANCE=this;
         getServer().getPluginManager().registerEvents(new GUIOnJoin(),this);
         getServer().getPluginManager().registerEvents(new EndermanClass(),this);
@@ -65,9 +64,17 @@ public final class AbilityClasses extends JavaPlugin {
     public static AbilityClasses getInstance(){
         return INSTANCE;
     }
-    public static void createAbilityClass(String classname, ItemStack icon, ItemMeta iconMeta){
+    public static void createAbilityClass(Consumer<String>c,Consumer<ItemMeta>im,Consumer<ItemStack>is,String classname, ItemStack icon,ItemMeta iconMeta){
         icon.setItemMeta(iconMeta);
         iconMeta.setDisplayName(classname);
         GUIOnJoin.classGUI.addItem(icon);
+        c.accept(classname);
+        is.accept(icon);
+        im.accept(iconMeta);
     }
-}
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        PlayerConfiguration.create(player);
+    }
+    }
