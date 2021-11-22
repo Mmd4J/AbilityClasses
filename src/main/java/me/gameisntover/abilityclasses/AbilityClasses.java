@@ -64,7 +64,7 @@ public final class AbilityClasses extends JavaPlugin {
     public static AbilityClasses getInstance(){
         return INSTANCE;
     }
-    public static void createAbilityClass(Consumer<String>c,Consumer<ItemMeta>im,Consumer<ItemStack>is,String classname, ItemStack icon,ItemMeta iconMeta){
+    public static void createAbilityClass(String classname, ItemStack icon,ItemMeta iconMeta){
         icon.setItemMeta(iconMeta);
         iconMeta.setDisplayName(classname);
         GUIOnJoin.classGUI.addItem(icon);
