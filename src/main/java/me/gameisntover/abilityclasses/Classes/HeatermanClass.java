@@ -1,9 +1,11 @@
 package me.gameisntover.abilityclasses.Classes;
 
 import me.gameisntover.abilityclasses.AbilityClasses;
+import me.gameisntover.abilityclasses.GameRules.ClassCooldowns;
 import me.gameisntover.abilityclasses.configurationfiles.PlayerConfiguration;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,32 +19,43 @@ public class HeatermanClass implements Listener {
     @EventHandler
     public void onPlayerAction(PlayerInteractEvent e) {
         Player player = e.getPlayer();
-        if (e.getAction().equals(Action.LEFT_CLICK_AIR)) {
+        if (e.getAction().equals(Action.LEFT_CLICK_AIR)||e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
             if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
                 PlayerConfiguration.load(player);
                 PlayerConfiguration.save();
                 if (PlayerConfiguration.get().getString("Class").equalsIgnoreCase("Heaterman")) {
                     PlayerConfiguration.load(player);
-                    PlayerConfiguration.save();
                     if (PlayerConfiguration.get().getString("Ability1").equalsIgnoreCase("true")) {
                         PlayerConfiguration.load(player);
                         PlayerConfiguration.get().set("Ability1", "false");
-                        AbilityClasses.getInstance().setCooldown(player);
+                        ClassCooldowns.heaterManCooldown1(player);
                         PlayerConfiguration.save();
                         player.getWorld().spawnParticle(Particle.FLAME, player.getLocation(), 12);
+                        player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 1, 1);
                         LargeFireball fireball = (LargeFireball) player.launchProjectile(LargeFireball.class);
                         fireball.setIsIncendiary(true);
                         fireball.setYield(0);
                         fireball.setShooter(player);
                         fireball.setVelocity(player.getLocation().getDirection().multiply(5));
                         fireball.setBounce(false);
-                        fireball.setCustomName("Fireball");
-                        fireball.setCustomNameVisible(true);
                         fireball.setFireTicks(100);
                         player.launchProjectile(fireball.getClass());
                     } else if (PlayerConfiguration.get().getString("Ability1").equalsIgnoreCase("false") && player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
-
-
+                    }
+                }
+            }
+        }else if (player.isSneaking()) {
+            if(e.getAction().equals(Action.LEFT_CLICK_AIR)||e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+            if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
+                PlayerConfiguration.load(player);
+                if (PlayerConfiguration.get().getString("Class").equalsIgnoreCase("Heaterman")) {
+                    PlayerConfiguration.load(player);
+                    if (PlayerConfiguration.get().getString("Ability2").equalsIgnoreCase("true")) {
+                        PlayerConfiguration.load(player);
+                        PlayerConfiguration.get().set("Ability2", "false");
+                        PlayerConfiguration.save();
+                        ClassCooldowns.heaterManCooldown2(player);
+                    }
                     }
                 }
             }

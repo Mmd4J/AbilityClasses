@@ -1,6 +1,7 @@
 package me.gameisntover.abilityclasses.Classes;
 
 import me.gameisntover.abilityclasses.AbilityClasses;
+import me.gameisntover.abilityclasses.GameRules.ClassCooldowns;
 import me.gameisntover.abilityclasses.configurationfiles.PlayerConfiguration;
 import org.bukkit.*;
 import org.bukkit.entity.EnderPearl;
@@ -30,6 +31,7 @@ public class EndermanClass implements Listener {
                         PlayerConfiguration.load(player);
                         PlayerConfiguration.get().set("Ability1", "false");
                         PlayerConfiguration.save();
+                        ClassCooldowns.enderManCooldown(player);
                         player.getWorld().spawnParticle(Particle.DRAGON_BREATH, player.getLocation(), 12);
                         player.launchProjectile(EnderPearl.class);
 
