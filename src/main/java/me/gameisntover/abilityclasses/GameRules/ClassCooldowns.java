@@ -27,7 +27,22 @@ public class ClassCooldowns {
             }
         }, 100);
     }
-    public static void enderManCooldown(OfflinePlayer player1){
+    public static void heaterManCooldown2(OfflinePlayer player1) {
+        Player player = player1.getPlayer();
+        BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+        int i = scheduler.scheduleSyncDelayedTask(AbilityClasses.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                PlayerConfiguration.load(player);
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&aJump Ready!")));
+                PlayerConfiguration.get().set("Ability2", "true");
+                PlayerConfiguration.save();
+                player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_AMBIENT, 1, 1);
+
+            }
+        },100);
+    }
+    public static void enderManCooldown1(OfflinePlayer player1){
         Player player = player1.getPlayer();
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
         int i = scheduler.scheduleSyncDelayedTask(AbilityClasses.getInstance(), new Runnable() {
@@ -40,6 +55,20 @@ public class ClassCooldowns {
                 player.playSound(player.getLocation(), org.bukkit.Sound.ENTITY_ENDERMAN_TELEPORT, 1, 2);
             }
         }, 100);
+    }    public static void enderManCooldown2(OfflinePlayer player1){
+        Player player = player1.getPlayer();
+        BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+        int i = scheduler.scheduleSyncDelayedTask(AbilityClasses.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                PlayerConfiguration.load(player);
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&aEnderBall Ready!")));
+                PlayerConfiguration.get().set("Ability2", "true");
+                PlayerConfiguration.save();
+                player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_SHOOT, 1, 2);
+            }
+        }, 100);
     }
+
 
 }

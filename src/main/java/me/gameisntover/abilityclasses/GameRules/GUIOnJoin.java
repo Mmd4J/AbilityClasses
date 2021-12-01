@@ -60,6 +60,7 @@ public class GUIOnJoin implements Listener {
                 PlayerConfiguration.load(player);
                 PlayerConfiguration.get().set("Class", "Enderman");
                 PlayerConfiguration.get().set("Ability1","true");
+                PlayerConfiguration.get().set("Ability2","true");
                 PlayerConfiguration.save();
                 player.closeInventory();
             } else         if (e.getCurrentItem().getType().equals(Material.BLAZE_POWDER) && e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6HeaterMan")) {
@@ -67,6 +68,7 @@ public class GUIOnJoin implements Listener {
                 PlayerConfiguration.load(player);
                 PlayerConfiguration.get().set("Class", "Heaterman");
                 PlayerConfiguration.get().set("Ability1","true");
+                PlayerConfiguration.get().set("Ability2","true");
                 PlayerConfiguration.save();
                 player.closeInventory();
             }

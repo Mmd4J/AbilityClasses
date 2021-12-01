@@ -1,25 +1,25 @@
 package me.gameisntover.abilityclasses.Classes;
 
-import me.gameisntover.abilityclasses.AbilityClasses;
 import me.gameisntover.abilityclasses.GameRules.ClassCooldowns;
 import me.gameisntover.abilityclasses.configurationfiles.PlayerConfiguration;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HeatermanClass implements Listener {
+
     @EventHandler
     public void onPlayerAction(PlayerInteractEvent e) {
         Player player = e.getPlayer();
-        if (e.getAction().equals(Action.LEFT_CLICK_AIR)||e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+        if (e.getAction().equals(Action.LEFT_CLICK_AIR) || e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
             if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
                 PlayerConfiguration.load(player);
                 PlayerConfiguration.save();
@@ -44,23 +44,24 @@ public class HeatermanClass implements Listener {
                     }
                 }
             }
-        }else if (player.isSneaking()) {
-            if(e.getAction().equals(Action.LEFT_CLICK_AIR)||e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
-            if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
-                PlayerConfiguration.load(player);
-                if (PlayerConfiguration.get().getString("Class").equalsIgnoreCase("Heaterman")) {
+        }
+          else  if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+                if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
                     PlayerConfiguration.load(player);
-                    if (PlayerConfiguration.get().getString("Ability2").equalsIgnoreCase("true")) {
+                    if (PlayerConfiguration.get().getString("Class").equalsIgnoreCase("Heaterman")) {
                         PlayerConfiguration.load(player);
-                        PlayerConfiguration.get().set("Ability2", "false");
-                        PlayerConfiguration.save();
-                        ClassCooldowns.heaterManCooldown2(player);
-                    }
+                        if (PlayerConfiguration.get().getString("Ability2").equalsIgnoreCase("true")) {
+                            PlayerConfiguration.load(player);
+                            PlayerConfiguration.get().set("Ability2", "false");
+                            PlayerConfiguration.save();
+                            player.spawnParticle(Particle.FLAME, player.getLocation(), 12);
+                            player.setVelocity(player.getLocation().getDirection().setY(1));
+                            ClassCooldowns.heaterManCooldown2(player);
+                        }
                     }
                 }
             }
         }
-    }
     @EventHandler
     public void onPlayerBurnDamage(EntityDamageEvent e) {
         Entity player = e.getEntity();
