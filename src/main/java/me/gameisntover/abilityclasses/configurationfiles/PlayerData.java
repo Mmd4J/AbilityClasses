@@ -10,10 +10,10 @@ import java.io.File;
 
 public class PlayerData {
 
-    static File cfile;
-    static FileConfiguration config;
-    static File folder = new File(AbilityClasses.getInstance().getDataFolder(), "player data" + File.separator);
-    static File df = AbilityClasses.getInstance().getDataFolder();
+   public static File cfile;
+   public static FileConfiguration config;
+   public static File folder = new File(AbilityClasses.getInstance().getDataFolder(), "player data" + File.separator);
+   public static File df = AbilityClasses.getInstance().getDataFolder();
 
     public static void create(Player p) {
         cfile = new File(df, "player data" + File.separator + p.getUniqueId() + ".yml");
