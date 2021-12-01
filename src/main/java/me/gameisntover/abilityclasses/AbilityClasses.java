@@ -10,8 +10,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class AbilityClasses extends JavaPlugin {
     public static AbilityClasses INSTANCE;
 public void onEnable() {
+    this.getLogger().info("AbilityClasses has been enabled!");
+
             INSTANCE=this;
-        getServer().getPluginManager().registerEvents(new GUIOnJoin(),this);
+     getServer().getPluginManager().registerEvents(new GUIOnJoin(),this);
         getServer().getPluginManager().registerEvents(new EndermanClass(),this);
         getServer().getPluginManager().registerEvents(new HeatermanClass(),this);
         saveDefaultConfig();

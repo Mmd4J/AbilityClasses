@@ -18,31 +18,33 @@ public class EndermanClass implements Listener {
     @EventHandler
     public void onPlayerAction(PlayerInteractEvent e) {
         Player player = e.getPlayer();
-        if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-            if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
-                PlayerData.load(player);
-                PlayerData.save();
-                PlayerData.load(player);
-                PlayerData.save();
-                if (PlayerData.get().getString("Ability1").equalsIgnoreCase("true")) {
+        if (PlayerData.get().getString("Class").equalsIgnoreCase("Heaterman")) {
+            if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+                if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
                     PlayerData.load(player);
-                    PlayerData.get().set("Ability1", "false");
+                    PlayerData.save();
+                    PlayerData.load(player);
+                    PlayerData.save();
+                    if (PlayerData.get().getString("Ability1").equalsIgnoreCase("true")) {
+                        PlayerData.load(player);
+                        PlayerData.get().set("Ability1", "false");
+                        PlayerData.save();
+                        player.getWorld().spawnParticle(Particle.DRAGON_BREATH, player.getLocation(), 12);
+                        player.launchProjectile(EnderPearl.class);
+                        ClassCooldowns.enderManCooldown1(player);
+
+                    }
+                }
+            } else if (e.getAction().equals(Action.LEFT_CLICK_BLOCK) || e.getAction().equals(Action.LEFT_CLICK_AIR)) {
+                if (PlayerData.get().getString("Ability2").equalsIgnoreCase("true")) {
+                    PlayerData.load(player);
+                    PlayerData.get().set("Ability2", "false");
                     PlayerData.save();
                     player.getWorld().spawnParticle(Particle.DRAGON_BREATH, player.getLocation(), 12);
-                    player.launchProjectile(EnderPearl.class);
-                    ClassCooldowns.enderManCooldown1(player);
-
+                    DragonFireball dragonFireball = player.launchProjectile(DragonFireball.class);
+                    dragonFireball.setIsIncendiary(true);
+                    ClassCooldowns.enderManCooldown2(player);
                 }
-            }
-        } else if (e.getAction().equals(Action.LEFT_CLICK_BLOCK) || e.getAction().equals(Action.LEFT_CLICK_AIR)) {
-            if (PlayerData.get().getString("Ability2").equalsIgnoreCase("true")) {
-                PlayerData.load(player);
-                PlayerData.get().set("Ability2", "false");
-                PlayerData.save();
-                player.getWorld().spawnParticle(Particle.DRAGON_BREATH, player.getLocation(), 12);
-                DragonFireball dragonFireball = player.launchProjectile(DragonFireball.class);
-                dragonFireball.setIsIncendiary(true);
-                ClassCooldowns.enderManCooldown2(player);
             }
         }
     }
