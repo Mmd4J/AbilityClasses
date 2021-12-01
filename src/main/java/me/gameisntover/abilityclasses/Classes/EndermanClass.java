@@ -1,7 +1,7 @@
 package me.gameisntover.abilityclasses.Classes;
 
 import me.gameisntover.abilityclasses.GameRules.ClassCooldowns;
-import me.gameisntover.abilityclasses.configurationfiles.PlayerConfiguration;
+import me.gameisntover.abilityclasses.configurationfiles.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.entity.DragonFireball;
@@ -20,14 +20,14 @@ public class EndermanClass implements Listener {
         Player player = e.getPlayer();
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
             if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
-                PlayerConfiguration.load(player);
-                PlayerConfiguration.save();
-                PlayerConfiguration.load(player);
-                PlayerConfiguration.save();
-                if (PlayerConfiguration.get().getString("Ability1").equalsIgnoreCase("true")) {
-                    PlayerConfiguration.load(player);
-                    PlayerConfiguration.get().set("Ability1", "false");
-                    PlayerConfiguration.save();
+                PlayerData.load(player);
+                PlayerData.save();
+                PlayerData.load(player);
+                PlayerData.save();
+                if (PlayerData.get().getString("Ability1").equalsIgnoreCase("true")) {
+                    PlayerData.load(player);
+                    PlayerData.get().set("Ability1", "false");
+                    PlayerData.save();
                     player.getWorld().spawnParticle(Particle.DRAGON_BREATH, player.getLocation(), 12);
                     player.launchProjectile(EnderPearl.class);
                     ClassCooldowns.enderManCooldown1(player);
@@ -35,10 +35,10 @@ public class EndermanClass implements Listener {
                 }
             }
         } else if (e.getAction().equals(Action.LEFT_CLICK_BLOCK) || e.getAction().equals(Action.LEFT_CLICK_AIR)) {
-            if (PlayerConfiguration.get().getString("Ability2").equalsIgnoreCase("true")) {
-                PlayerConfiguration.load(player);
-                PlayerConfiguration.get().set("Ability2", "false");
-                PlayerConfiguration.save();
+            if (PlayerData.get().getString("Ability2").equalsIgnoreCase("true")) {
+                PlayerData.load(player);
+                PlayerData.get().set("Ability2", "false");
+                PlayerData.save();
                 player.getWorld().spawnParticle(Particle.DRAGON_BREATH, player.getLocation(), 12);
                 DragonFireball dragonFireball = player.launchProjectile(DragonFireball.class);
                 dragonFireball.setIsIncendiary(true);

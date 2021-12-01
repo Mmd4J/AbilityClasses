@@ -1,7 +1,7 @@
 package me.gameisntover.abilityclasses.Classes;
 
 import me.gameisntover.abilityclasses.GameRules.ClassCooldowns;
-import me.gameisntover.abilityclasses.configurationfiles.PlayerConfiguration;
+import me.gameisntover.abilityclasses.configurationfiles.PlayerData;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -21,15 +21,15 @@ public class HeatermanClass implements Listener {
         Player player = e.getPlayer();
         if (e.getAction().equals(Action.LEFT_CLICK_AIR) || e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
             if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
-                PlayerConfiguration.load(player);
-                PlayerConfiguration.save();
-                if (PlayerConfiguration.get().getString("Class").equalsIgnoreCase("Heaterman")) {
-                    PlayerConfiguration.load(player);
-                    if (PlayerConfiguration.get().getString("Ability1").equalsIgnoreCase("true")) {
-                        PlayerConfiguration.load(player);
-                        PlayerConfiguration.get().set("Ability1", "false");
+                PlayerData.load(player);
+                PlayerData.save();
+                if (PlayerData.get().getString("Class").equalsIgnoreCase("Heaterman")) {
+                    PlayerData.load(player);
+                    if (PlayerData.get().getString("Ability1").equalsIgnoreCase("true")) {
+                        PlayerData.load(player);
+                        PlayerData.get().set("Ability1", "false");
                         ClassCooldowns.heaterManCooldown1(player);
-                        PlayerConfiguration.save();
+                        PlayerData.save();
                         player.getWorld().spawnParticle(Particle.FLAME, player.getLocation(), 12);
                         player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 1, 1);
                         LargeFireball fireball = (LargeFireball) player.launchProjectile(LargeFireball.class);
@@ -40,20 +40,20 @@ public class HeatermanClass implements Listener {
                         fireball.setBounce(false);
                         fireball.setFireTicks(100);
                         player.launchProjectile(fireball.getClass());
-                    } else if (PlayerConfiguration.get().getString("Ability1").equalsIgnoreCase("false") && player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
+                    } else if (PlayerData.get().getString("Ability1").equalsIgnoreCase("false") && player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
                     }
                 }
             }
         }
           else  if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
                 if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
-                    PlayerConfiguration.load(player);
-                    if (PlayerConfiguration.get().getString("Class").equalsIgnoreCase("Heaterman")) {
-                        PlayerConfiguration.load(player);
-                        if (PlayerConfiguration.get().getString("Ability2").equalsIgnoreCase("true")) {
-                            PlayerConfiguration.load(player);
-                            PlayerConfiguration.get().set("Ability2", "false");
-                            PlayerConfiguration.save();
+                    PlayerData.load(player);
+                    if (PlayerData.get().getString("Class").equalsIgnoreCase("Heaterman")) {
+                        PlayerData.load(player);
+                        if (PlayerData.get().getString("Ability2").equalsIgnoreCase("true")) {
+                            PlayerData.load(player);
+                            PlayerData.get().set("Ability2", "false");
+                            PlayerData.save();
                             player.spawnParticle(Particle.FLAME, player.getLocation(), 12);
                             player.setVelocity(player.getLocation().getDirection().setY(1));
                             ClassCooldowns.heaterManCooldown2(player);

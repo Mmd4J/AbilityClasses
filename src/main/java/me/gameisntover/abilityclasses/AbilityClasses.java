@@ -3,7 +3,7 @@ import com.google.common.util.concurrent.AbstractScheduledService;
 import me.gameisntover.abilityclasses.Classes.EndermanClass;
 import me.gameisntover.abilityclasses.Classes.HeatermanClass;
 import me.gameisntover.abilityclasses.GameRules.GUIOnJoin;
-import me.gameisntover.abilityclasses.configurationfiles.PlayerConfiguration;
+import me.gameisntover.abilityclasses.configurationfiles.PlayerData;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -31,6 +31,6 @@ public void onEnable() {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        PlayerConfiguration.create(player);
+        PlayerData.create(player);
     }
     }

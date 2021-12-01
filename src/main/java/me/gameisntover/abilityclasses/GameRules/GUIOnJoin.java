@@ -1,5 +1,5 @@
 package me.gameisntover.abilityclasses.GameRules;
-import me.gameisntover.abilityclasses.configurationfiles.PlayerConfiguration;
+import me.gameisntover.abilityclasses.configurationfiles.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -20,10 +20,10 @@ public class GUIOnJoin implements Listener {
     @EventHandler
     public static void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        PlayerConfiguration.load(player);
-        PlayerConfiguration.get().addDefault("Class", null);
-        PlayerConfiguration.save();
-        if (PlayerConfiguration.get().getString("Class") == null) {
+        PlayerData.load(player);
+        PlayerData.get().addDefault("Class", null);
+        PlayerData.save();
+        if (PlayerData.get().getString("Class") == null) {
             player.sendMessage("§cYou have no class, please choose one!");
             ItemStack enderman = new ItemStack(Material.ENDER_PEARL, 1);
             ItemMeta endermanMeta = enderman.getItemMeta();
@@ -47,8 +47,8 @@ public class GUIOnJoin implements Listener {
             classGUI.addItem(heaterMan);
             player.openInventory(classGUI);
 
-        } else if (PlayerConfiguration.get().getString("Class") != null){
-            player.sendMessage("§bYour Class : "+ PlayerConfiguration.get().getString("Class"));
+        } else if (PlayerData.get().getString("Class") != null){
+            player.sendMessage("§bYour Class : "+ PlayerData.get().getString("Class"));
         }
     }
     @EventHandler
@@ -57,19 +57,19 @@ public class GUIOnJoin implements Listener {
             e.setCancelled(true);
             if (e.getCurrentItem().getType().equals(Material.ENDER_PEARL) && e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§2Enderman")) {
                 Player player = (Player) e.getWhoClicked();
-                PlayerConfiguration.load(player);
-                PlayerConfiguration.get().set("Class", "Enderman");
-                PlayerConfiguration.get().set("Ability1","true");
-                PlayerConfiguration.get().set("Ability2","true");
-                PlayerConfiguration.save();
+                PlayerData.load(player);
+                PlayerData.get().set("Class", "Enderman");
+                PlayerData.get().set("Ability1","true");
+                PlayerData.get().set("Ability2","true");
+                PlayerData.save();
                 player.closeInventory();
             } else         if (e.getCurrentItem().getType().equals(Material.BLAZE_POWDER) && e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6HeaterMan")) {
                 Player player = (Player) e.getWhoClicked();
-                PlayerConfiguration.load(player);
-                PlayerConfiguration.get().set("Class", "Heaterman");
-                PlayerConfiguration.get().set("Ability1","true");
-                PlayerConfiguration.get().set("Ability2","true");
-                PlayerConfiguration.save();
+                PlayerData.load(player);
+                PlayerData.get().set("Class", "Heaterman");
+                PlayerData.get().set("Ability1","true");
+                PlayerData.get().set("Ability2","true");
+                PlayerData.save();
                 player.closeInventory();
             }
             }
