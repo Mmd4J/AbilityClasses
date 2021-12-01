@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GUIOnJoin implements Listener {
-    public static Inventory classGUI = Bukkit.createInventory(null, 9, "§6Classes");
+    public static Inventory classGUI = Bukkit.createInventory(null, 54, "§6Classes");
     @EventHandler
     public static void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
