@@ -41,39 +41,40 @@ public class HeatermanClass implements Listener {
                     }
                 }
             }
-        }
-          else  if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-                if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
+        } else if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+            if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
+                PlayerData.load(player);
+                if (PlayerData.get().getString("Class").equalsIgnoreCase("Heaterman")) {
                     PlayerData.load(player);
-                    if (PlayerData.get().getString("Class").equalsIgnoreCase("Heaterman")) {
+                    if (PlayerData.get().getString("Ability2").equalsIgnoreCase("true")) {
                         PlayerData.load(player);
-                        if (PlayerData.get().getString("Ability2").equalsIgnoreCase("true")) {
-                            PlayerData.load(player);
-                            PlayerData.get().set("Ability2", "false");
-                            PlayerData.save();
-                            player.spawnParticle(Particle.FLAME, player.getLocation(), 12);
-                            player.setVelocity(player.getLocation().getDirection().setY(1));
-                            ClassCooldowns.heaterManCooldown2(player);
-                        }
+                        PlayerData.get().set("Ability2", "false");
+                        PlayerData.save();
+                        player.spawnParticle(Particle.FLAME, player.getLocation(), 12);
+                        player.setVelocity(player.getLocation().getDirection().setY(1));
+                        ClassCooldowns.heaterManCooldown2(player);
                     }
                 }
             }
         }
+    }
+
     @EventHandler
     public void onPlayerBurnDamage(EntityDamageEvent e) {
         Entity player = e.getEntity();
         if (player instanceof Player) {
-            if (e.getCause()==EntityDamageEvent.DamageCause.LAVA ) {
-                e.setCancelled(true);
-            }else if ( e.getCause()==EntityDamageEvent.DamageCause.FIRE){
-                e.setCancelled(true);
-            }    else if ( e.getCause()==EntityDamageEvent.DamageCause.FIRE_TICK){
-            e.setCancelled(true);
-        }
-            else {
-                e.setCancelled(false);
+            PlayerData.load((Player) player);
+        if (PlayerData.get().getString("Class").equalsIgnoreCase("Heaterman")) {
+                if (e.getCause() == EntityDamageEvent.DamageCause.LAVA) {
+                    e.setCancelled(true);
+                } else if (e.getCause() == EntityDamageEvent.DamageCause.FIRE) {
+                    e.setCancelled(true);
+                } else if (e.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK) {
+                    e.setCancelled(true);
+                } else {
+                    e.setCancelled(false);
+                }
             }
         }
     }
-
 }
