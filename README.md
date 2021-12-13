@@ -26,3 +26,4 @@ depend:
   - AbilityClasses
 ```
 to your code
+Don't forget checking out the [Wiki](https://github.com/GaMeIsNtOvEr/AbilityClasses/wiki/Home) 
