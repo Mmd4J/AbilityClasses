@@ -19,3 +19,10 @@ if you want to use the plugin api you should just do this in your pom.xml:
     <version>34f169e7ee</version>
 	</dependency>
  ```
+
+You may also need adding 
+```yml
+depend:
+  - AbilityClasses
+```
+to your code
