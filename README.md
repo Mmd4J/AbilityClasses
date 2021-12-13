@@ -18,5 +18,4 @@ if you want to use the plugin api you should just do this in your pom.xml:
     <version>-SNAPSHOT</version>
 	</dependency>
  ```
-Tadaaaaa! And now you can use the plugin api :D
- 
+Im still Working on the api so be patient
