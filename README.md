@@ -20,10 +20,9 @@ if you want to use the plugin api you should just do this in your pom.xml:
 	</dependency>
  ```
 
-You may also need adding 
+You may also need adding this 👇 
 ```yml
 depend:
   - AbilityClasses
-```
-to your code
+  ``` 
 Don't forget checking out the [Wiki](https://github.com/GaMeIsNtOvEr/AbilityClasses/wiki/Home) 
