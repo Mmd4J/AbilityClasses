@@ -4,14 +4,3 @@ main: me.gameisntover.abilityclasses.AbilityClasses
 api-version: 1.16
 authors: [ MmdGIO ]
 description: a plugin that adds classes with their special abilities
-commands:
-  getclass:
-    permission: AbilityClasses.getclass
-    aliases: gc
-    usage: /getclass <playername>
-    description: get player class
-  setclass:
-    permission: AbilityClasses.setclass
-    aliases: sc
-    usage: /setclass <playername> <classname>
-    description: set player class

@@ -53,4 +53,5 @@ public class AbilityClassPlayer {
         PlayerData.get().set("Ability" + abilitynumber, abilitytoggle);
         PlayerData.save();
     }
+
 }

@@ -8,6 +8,7 @@ import me.gameisntover.abilityclasses.GameRules.JoinGUI;
 import me.gameisntover.abilityclasses.configurationfiles.PlayerData;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,6 +29,8 @@ public final class AbilityClasses extends JavaPlugin implements Listener {
         registerCommands();
         loadListeners();
         loggers();
+
+
     }
     public void loggers(){
         String text1 = "Frosty and Heaterman are both enemy with eachother";
@@ -42,8 +45,6 @@ public final class AbilityClasses extends JavaPlugin implements Listener {
         this.getLogger().info(ChatColor.GREEN + randomtext1);
     }
     public void registerCommands(){
-        getCommand("setclass").setExecutor(new Commands());
-        getCommand("getclass").setExecutor(new Commands());
     }
     public void loadListeners(){
         getServer().getPluginManager().registerEvents(new JoinGUI(), this);

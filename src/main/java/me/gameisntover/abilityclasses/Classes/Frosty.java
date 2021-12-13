@@ -1,6 +1,5 @@
 package me.gameisntover.abilityclasses.Classes;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type;
 import me.gameisntover.abilityclasses.API.AbilityKeysAPI;
 import me.gameisntover.abilityclasses.API.AbilityClassPlayer;
 import me.gameisntover.abilityclasses.GameRules.ClassCooldowns;
@@ -8,7 +7,7 @@ import me.gameisntover.abilityclasses.configurationfiles.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
-import org.bukkit.block.Block;
+
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

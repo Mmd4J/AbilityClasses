@@ -2,6 +2,7 @@ package me.gameisntover.abilityclasses.API;
 
 import me.gameisntover.abilityclasses.GameRules.JoinGUI;
 import me.gameisntover.abilityclasses.configurationfiles.PlayerData;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -9,6 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class AbilityClassAPI {
     public static Map<ItemStack, String> abilityMap = new HashMap<>();
