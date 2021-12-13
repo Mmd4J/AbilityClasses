@@ -34,33 +34,32 @@ public class Frosty implements Listener {
                         player.getLocation().setY(2);
                         player.spawnParticle(Particle.FIREWORKS_SPARK, player.getLocation(), 10);
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_SHOOT, 1, 1.4f);
-                        AbilityClassPlayer.toggleAbility(player, 1,false);
+                        AbilityClassPlayer.toggleAbility(player, 1, false);
                         ClassCooldowns.frostyCooldown1(player);
                     }
                 }
             }
-        }
-                if (AbilityClassPlayer.ableToUseAbility(player, 2)) {
-                    if (AbilityKeysAPI.LeftClick(e, player) && !AbilityKeysAPI.Sneaking(player)) {
-                        PlayerData.load(player);
-                        AbilityClassPlayer.toggleAbility(player, 2, false);
-                        PlayerData.save();
-                        Snowball snowball = player.launchProjectile(Snowball.class);
-                        snowball.setCustomName("SnowBall");
-                        ClassCooldowns.frostyCooldown2(player);
-                    }
+            if (AbilityClassPlayer.ableToUseAbility(player, 2)) {
+                if (AbilityKeysAPI.LeftClick(e, player) && !AbilityKeysAPI.Sneaking(player)) {
+                    PlayerData.load(player);
+                    AbilityClassPlayer.toggleAbility(player, 2, false);
+                    PlayerData.save();
+                    Snowball snowball = player.launchProjectile(Snowball.class);
+                    snowball.setCustomName("SnowBall");
+                    ClassCooldowns.frostyCooldown2(player);
                 }
-                if (AbilityClassPlayer.ableToUseAbility(player,3)){
-                    if (player.getInventory().getItemInMainHand().getType()==Material.AIR){
-                        if (AbilityKeysAPI.RightClick(e,player)){
-                            player.setVelocity(player.getLocation().getDirection().setY(0.5));
-                            AbilityClassPlayer.toggleAbility(player,3,false);
-                            ClassCooldowns.frostyCooldown3(player);
-                        }
+            }
+            if (AbilityClassPlayer.ableToUseAbility(player, 3)) {
+                if (player.getInventory().getItemInMainHand().getType() == Material.AIR) {
+                    if (AbilityKeysAPI.RightClick(e, player)) {
+                        player.setVelocity(player.getLocation().getDirection().setY(0.5));
+                        AbilityClassPlayer.toggleAbility(player, 3, false);
+                        ClassCooldowns.frostyCooldown3(player);
                     }
                 }
             }
-
+        }
+    }
     @EventHandler
     public void onFallingBlockLand(EntityChangeBlockEvent e) {
         Entity entity = e.getEntity();
