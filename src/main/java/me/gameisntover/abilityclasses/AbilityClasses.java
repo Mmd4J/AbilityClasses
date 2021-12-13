@@ -6,6 +6,7 @@ import me.gameisntover.abilityclasses.Classes.Frosty;
 import me.gameisntover.abilityclasses.Classes.HeatermanClass;
 import me.gameisntover.abilityclasses.GameRules.JoinGUI;
 import me.gameisntover.abilityclasses.configurationfiles.PlayerData;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -29,8 +30,9 @@ public final class AbilityClasses extends JavaPlugin implements Listener {
         registerCommands();
         loadListeners();
         loggers();
-
-
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new Expansion().register();
+        }
     }
     public void loggers(){
         String text1 = "Frosty and Heaterman are both enemy with eachother";
