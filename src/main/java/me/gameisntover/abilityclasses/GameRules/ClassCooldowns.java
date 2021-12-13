@@ -99,7 +99,7 @@ public class ClassCooldowns {
                 player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&bJump Ready!")));
                 AbilityClassPlayer.toggleAbility(player,3,true);
                 PlayerData.save();
-                player.playSound(player.getLocation(), Sound.BLOCK_SNOW_PLACE, 1, 0.5f);
+                player.playSound(player.getLocation(), Sound.BLOCK_SNOW_PLACE, 1, 1.5f);
 
             }
         }, 80);
