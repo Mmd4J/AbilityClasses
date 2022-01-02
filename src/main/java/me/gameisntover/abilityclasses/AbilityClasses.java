@@ -23,7 +23,6 @@ import java.util.List;
 
 public final class AbilityClasses extends JavaPlugin implements Listener {
     public static AbilityClasses INSTANCE;
-
     public void onEnable() {
         INSTANCE = this;
         saveDefaultConfig();
@@ -34,6 +33,9 @@ public final class AbilityClasses extends JavaPlugin implements Listener {
             new Expansion().register();
         }
     }
+    public void loadClasses(){
+  //soon!
+      }
     public void loggers(){
         String text1 = "Frosty and Heaterman are both enemy with eachother";
         String text2 = "Endermans are probably the only people who's survived the end";
