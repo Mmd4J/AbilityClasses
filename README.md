@@ -1,4 +1,5 @@
 
+P.S : this project needs to be recoded so don't use it till i remove this text
 Thanks for using AbilityClasses
 This plugin is made for custom classes with their own abilities which is really cool.
 I've tried to make a great api for making classes & abilities very easy but don't worry i'll describe everything you may need but first.
